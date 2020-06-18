@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  app:
+    build:
+      # Says where to grab the image from
+      context: .
+    # coppies port from local to docker
+    ports:
+      - "8000:8000"
+    # allows docker to be updated when we change things without restarting
+    volumes:
+      # maps local to docker image
+      - ./app:/app
+      # runs command to run django local server on port 8000
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
